@@ -1,0 +1,16 @@
+{
+  "name": "meteoweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  },
+  "scripts": {
+    "dev": "live-server --browser=chrome"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
