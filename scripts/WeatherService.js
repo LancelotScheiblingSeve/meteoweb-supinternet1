@@ -9,6 +9,12 @@
             return fetch(`${API_ENDPOINT}/weather?units=metric&lang=fr&APPID=${API_KEY}&q=${cityName}`)
                     .then(response => response.json());
         },
+
+        getForecastById(cityId) {
+            return fetch(`${API_ENDPOINT}/forecast?units=metric&lang=fr&APPID=${API_KEY}&id=${cityId}`)
+                    .then(response => response.json());
+
+        }
     };
 
 })(window);
