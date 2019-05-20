@@ -7,6 +7,7 @@ const forecastResults = document.getElementById('forecast-results');
 
 formSearch.addEventListener('submit', event => {
     event.preventDefault();
+    hideError();
 
     const city = inputCityName.value;
 
@@ -27,7 +28,7 @@ formSearch.addEventListener('submit', event => {
                                     <a href="#" class="card-link" id="previsions" data-city-id="${weather.id}">Afficher les prévisions</a>
                                 </div>
                             </div>`;
-    });
+    }).catch(error => showError(error));
 });
 
 weatherResults.addEventListener('click', function(event) {
@@ -35,6 +36,7 @@ weatherResults.addEventListener('click', function(event) {
     if (!event.target || !event.target.matches('#previsions')) return;
     
     event.preventDefault();
+    hideError();
 
     const cityId = event.target.dataset.cityId;
 
@@ -55,7 +57,7 @@ weatherResults.addEventListener('click', function(event) {
                                             )).join('')}
                                         </ul>`
                                     )).filter(Boolean).join('')}`;
-    })
+    }).catch(error => showError(error));
 });
 
 function groupByDay(weatherList) {
@@ -71,4 +73,18 @@ function groupByDay(weatherList) {
         group[d.getTime()].push(weather);
         return group;
     }, {});
+}
+
+function showError(message) {
+    let errorElement = document.getElementById('error');
+    errorElement.classList.remove('d-none');
+    errorElement.classList.add('d-block');
+    errorElement.textContent = message;
+}
+
+function hideError() {
+    let errorElement = document.getElementById('error');
+    errorElement.classList.remove('d-block');
+    errorElement.classList.add('d-none');
+    errorElement.textContent = '';
 }
